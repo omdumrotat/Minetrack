@@ -17,9 +17,19 @@ RUN apt-get update                                                   \
 WORKDIR /usr/src/minetrack
 COPY . .
 
-# build minetrack
-RUN npm install --build-from-source \
- && npm run build
+# install dependencies
+RUN npm install --build-from-source
+
+# copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# build dist at container start to ensure fresh build
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/docker-entrypoint.sh"]
+
+EXPOSE 8080
+
+CMD ["node", "main.js"]
 
 EXPOSE 8080
 
