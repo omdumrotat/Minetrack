@@ -51,7 +51,15 @@ For updates and release notes, please read the [CHANGELOG](docs/CHANGELOG.md).
 (There's also ```install.sh``` and ```start.sh```, but they may not work for your OS.)
 
 Database logging is disabled by default. You can enable it in ```config.json``` by setting ```logToDatabase``` to true.
-This requires sqlite3 drivers to be installed.
+This now stores data inside InfluxDB. Provide the connection details in the ```influx``` block and export the ```INFLUXDB_TOKEN``` (or whichever variable you configure via ```tokenEnvVar```).
+
+### InfluxDB setup
+1. Deploy or connect to an InfluxDB 2.x instance.
+2. Create a bucket (for example ```minetrack```) with a retention that is at least as large as ```graphDuration```.
+3. Create an API token with read/write access to that bucket.
+4. Set ```config.influx.url```, ```org```, and ```bucket``` to match your environment.
+5. Set ```config.influx.token``` directly **or** set ```tokenEnvVar``` and export the token in your shell, e.g. ```export INFLUXDB_TOKEN=<token>```.
+6. Optional: customize ```writeBatchSize```, ```flushIntervalMs```, or measurement names if you want to separate environments.
 
 ## Docker
 Minetrack can be built and run with Docker from this repository in several ways:
@@ -78,6 +86,8 @@ docker-compose up --build
 # stop service and remove artifacts
 docker-compose down
 ```
+
+The provided compose file now starts both Minetrack and an InfluxDB container. Update the environment variables (especially ```INFLUXDB_TOKEN```) before running in production, or point ```config.influx.url``` to your existing InfluxDB deployment.
 
 ## Nginx reverse proxy
 The following configuration enables Nginx to act as reverse proxy for a Minetrack instance that is available at port 8080 on localhost:

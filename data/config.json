@@ -14,5 +14,18 @@
 	"logFailedPings": true,
 	"logToDatabase": true,
 	"graphDuration": 86400000,
-	"serverGraphDuration": 180000
+	"serverGraphDuration": 180000,
+	"influx": {
+		"url": "http://localhost:8086",
+		"org": "minetrack",
+		"bucket": "minetrack",
+		"tokenEnvVar": "INFLUXDB_TOKEN",
+		"writePrecision": "ms",
+		"writeBatchSize": 250,
+		"flushIntervalMs": 1000,
+		"measurements": {
+			"pings": "server_pings",
+			"records": "player_records"
+		}
+	}
 }

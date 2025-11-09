@@ -31,7 +31,7 @@ if (!config.serverGraphDuration) {
 }
 
 if (!config.logToDatabase) {
-  logger.log('warn', 'Database logging is not enabled. You can enable it by setting "logToDatabase" to true in config.json. This requires sqlite3 to be installed.')
+  logger.log('warn', 'Database logging is not enabled. You can enable it by setting "logToDatabase" to true in config.json. This requires a reachable InfluxDB bucket (see config.influx).')
 
   app.handleReady()
 } else {
