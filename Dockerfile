@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18-bookworm
 
 ARG TINI_VER="v0.19.0"
 
