@@ -21,9 +21,11 @@ You can find a list of community hosted instances below. Want to be listed here?
 
 * https://minetrack.me
 * https://bedrock.minetrack.me
+* https://minetrack.gg
 * https://suomimine.fi
 * https://minetrack.geyserconnect.net
 * https://minetrack.fi
+* https://www.anarchytrack.live/
 * https://track.axsoter.com
 * https://pvp-factions.fr
 * https://stats.liste-serveurs.fr
